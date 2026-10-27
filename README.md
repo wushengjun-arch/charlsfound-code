@@ -63,4 +63,6 @@ These checks validate source formatting and syntax, not model performance or sci
 reproducibility. The code is released under the MIT License (see [LICENSE](LICENSE)).
 
 Repository: https://github.com/wushengjun-arch/charlsfound-code
-Archived release DOI: to be added after the Zenodo release is published.
+Archived release (v1.0.0) DOI: [10.5281/zenodo.23689332](https://doi.org/10.5281/zenodo.23689332)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23689332.svg)](https://doi.org/10.5281/zenodo.23689332)
