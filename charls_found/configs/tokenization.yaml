@@ -1,0 +1,43 @@
+inputs:
+  schema: "outputs/01_data_audit/charls_schema.csv"
+  value_labels: "outputs/01_data_audit/charls_value_label_dictionary.csv"
+  value_label_supplement: "charls_found/configs/value_label_supplement.yaml"
+  outcome_registry: "outputs/02_outcome_registry/outcome_registry_validated.csv"
+  leakage_matrix: "outputs/04_leakage/per_outcome_predictor_leakage_matrix.csv"
+
+outputs:
+  variable_type_map: "outputs/05_tokenization/charls_variable_type_map.csv"
+  variable_type_map_report: "outputs/05_tokenization/charls_variable_type_map_report.md"
+  value_label_map: "outputs/05_tokenization/charls_value_label_map.json"
+  value_label_map_report: "outputs/05_tokenization/charls_value_label_map_report.md"
+  continuous_bin_edges: "outputs/05_tokenization/charls_continuous_bin_edges.json"
+  continuous_bin_edges_report: "outputs/05_tokenization/charls_continuous_bin_edges_report.md"
+  trait_vocab: "outputs/05_tokenization/trait_vocab.json"
+  value_vocab: "outputs/05_tokenization/value_vocab.json"
+  module_vocab: "outputs/05_tokenization/module_vocab.json"
+  wave_vocab: "outputs/05_tokenization/wave_vocab.json"
+  vocabulary_report: "outputs/05_tokenization/charls_vocabularies_report.md"
+  tokenization_metadata: "outputs/05_tokenization/charls_tokenization_metadata.csv"
+  tokenized_person_wave: "outputs/05_tokenization/charls_tokenized_person_wave.parquet"
+  tokenization_qc_report: "outputs/05_tokenization/tokenization_qc_report.md"
+
+thresholds:
+  v1_exclude_missing_rate_ge: 0.8
+  continuous_min_unique_values: 21
+  categorical_max_unique_values: 20
+  continuous_quantile_bins: 10
+  continuous_mass_point_threshold: 0.2
+
+special_tokens:
+  value_missing: "value:<missing>"
+  value_mask: "value:<mask>"
+  value_pad: "value:<pad>"
+
+rules:
+  exclude_identifier_variables: true
+  wave_as_context_only: true
+  exclude_mortality_timing_until_reviewed: true
+  use_global_continuous_bins_v1: true
+  baseline_prediction_requires_per_outcome_filter: true
+  high_cardinality_categorical_allowlist:
+    - "city"

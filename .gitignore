@@ -1,0 +1,45 @@
+# Python environments, caches and build products
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+# Local settings and credentials
+.env
+.env.*
+*.pem
+*.key
+# Participant data, fitted models and generated outputs
+/data/
+/outputs/
+*.parquet
+*.feather
+*.arrow
+*.dta
+*.sav
+*.sas7bdat
+*.sqlite*
+*.db
+*.pt
+*.pth
+*.ckpt
+*.joblib
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.h5
+*.csv
+*.xlsx
+*.docx
+*.pptx
+*.pdf
+*.png
+*.zip
+*.log

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "charlsfound-code"
+version = "0.1.0"
+description = "Core training and cohort validation for CHARLS-found"
+readme = "README.md"
+requires-python = ">=3.11"
+# Direct dependencies observed in the local packaging environment, not a historical lockfile.
+dependencies = [
+    "numpy==2.4.4",
+    "pandas==2.3.3",
+    "pyarrow==23.0.1",
+    "scikit-learn==1.8.0",
+    "PyYAML==6.0.3",
+    "torch==2.11.0",
+    "lightgbm==4.6.0",
+    "xgboost==3.2.0",
+    "scikit-survival==0.27.0",
+    "matplotlib==3.10.9",
+    "statsmodels==0.14.6",
+]
+
+[project.optional-dependencies]
+dev = ["black==26.10.1", "build", "wheel"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["charls_found*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+charls_found = ["configs/*.yaml"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+extend-exclude = "/(build|dist)/"

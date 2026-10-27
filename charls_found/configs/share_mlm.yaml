@@ -1,0 +1,79 @@
+inputs:
+  tokenized_person_wave: "outputs/09_external_validation/share_mlm/share_tokenized_person_wave.parquet"
+  tokenization_metadata: "outputs/09_external_validation/share_mlm/share_tokenization_metadata.csv"
+  supervised_outcome_matrix: "outputs/09_external_validation/share/share_supervised_outcome_matrix.parquet"
+  supervised_matrix_manifest: "outputs/09_external_validation/share/share_supervised_matrix_manifest.json"
+  baseline_probe_metrics: "outputs/09_external_validation/share/share_baseline_metrics.csv"
+  leakage_matrix: "outputs/09_external_validation/share/share_per_outcome_leakage.csv"
+  outcome_registry: "outputs/09_external_validation/share/share_outcome_registry.csv"
+
+outputs:
+  mlm_directory: "outputs/09_external_validation/share_mlm"
+  mlm_person_wave_dataset: "outputs/09_external_validation/share_mlm/share_mlm_person_wave.parquet"
+  mlm_split_manifest: "outputs/09_external_validation/share_mlm/share_mlm_split_manifest.json"
+  diagnostic_trait_masks: "outputs/09_external_validation/share_mlm/share_outcome_trait_masks.json"
+  mlm_input_report: "outputs/09_external_validation/share_mlm/share_mlm_input_report.md"
+  embedding_comparison_directory: "outputs/09_external_validation/share"
+  embedding_comparison_metrics: "outputs/09_external_validation/share/share_embedding_vs_tree_metrics.csv"
+  embedding_comparison_decision_table: "outputs/09_external_validation/share/share_embedding_vs_tree_decision_table.csv"
+  embedding_comparison_report: "outputs/09_external_validation/share/share_embedding_vs_tree_report.md"
+  multimorbidity_stability_bootstrap: "outputs/09_external_validation/share/share_multimorbidity_stability_bootstrap.csv"
+  multimorbidity_stability_repeated_splits: "outputs/09_external_validation/share/share_multimorbidity_stability_repeated_splits.csv"
+  multimorbidity_stability_report: "outputs/09_external_validation/share/share_multimorbidity_stability_report.md"
+
+model:
+  hidden_size: 128
+  num_layers: 4
+  num_heads: 4
+  dropout: 0.1
+
+training:
+  seed: 20260625
+  mask_probability: 0.15
+  batch_size: 128
+  max_epochs: 20
+  patience: 4
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  num_workers: 0
+  device: "auto"
+  run_name: "share_found_lite_v1"
+
+comparison:
+  baseline_tree_models: ["lightgbm", "xgboost"]
+  embedding_run_name: "share_found_lite_v1"
+  clean_mask_mode: "none"
+  disease_mask_mode: "diagnostic"
+  disease_domains: ["chronic_disease", "multimorbidity"]
+  embedding_models: ["logistic_regression", "mlp"]
+  embedding_poolings: ["cls_embedding", "mean_embedding"]
+  include_time_features: true
+  fm_delta_threshold: 0.01
+  mlp_hidden_layer_sizes: [64]
+  mlp_alpha: 0.0001
+  mlp_batch_size: 256
+  mlp_learning_rate_init: 0.001
+  mlp_max_iter: 120
+  mlp_n_iter_no_change: 12
+
+stability:
+  outcome_id: "multimorbidity_onset"
+  seed: 20260625
+  bootstrap_iterations: 1000
+  repeated_splits: 10
+  train_fraction: 0.8
+  validation_fraction: 0.1
+  test_fraction: 0.1
+
+masking:
+  mask_token: "value:<mask>"
+  pad_token: "value:<pad>"
+  missing_token: "value:<missing>"
+  diagnostic_exclusion_reasons:
+    - "target_source_variable"
+    - "hypertension_diagnostic_or_treatment"
+    - "diabetes_diagnostic_or_treatment"
+    - "chronic_disease_or_treatment_construct"
+    - "depression_scale_construct"
+    - "cognition_construct"
+    - "function_construct_leakage"

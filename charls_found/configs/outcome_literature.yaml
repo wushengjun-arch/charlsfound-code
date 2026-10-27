@@ -1,0 +1,59 @@
+references:
+  harmonized_charls_d:
+    citation: "Harmonized CHARLS Documentation, Version D"
+    url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/harmonized_charls/application/Harmonized_CHARLS_D.pdf"
+    supports: "Harmonized CHARLS variable definitions for chronic disease, cognition, CESD, ADL/IADL, medical use, and mortality timing fields."
+  charls_2018_user_guide:
+    citation: "CHARLS 2018 User's Guide"
+    url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Users_Guide.pdf"
+    supports: "Official CHARLS survey documentation and wave-specific questionnaire/data structure."
+  cesd10_cutpoint_validation:
+    citation: "Fu et al. 2022. Optimal cut-off point of the 10-item CES-D among Chinese people aged 45 and over"
+    url: "https://pubmed.ncbi.nlm.nih.gov/35360127/"
+    supports: "CESD-10 threshold validation in CHARLS-age Chinese adults; supports using 10 as high depressive symptoms cut point."
+  charls_cognition_decline:
+    citation: "Chen et al. 2022. Prediction of cognitive decline with the Chinese Longitudinal Healthy Longevity Survey and China Health and Retirement Longitudinal Study"
+    url: "https://bmcgeriatr.biomedcentral.com/articles/10.1186/s12877-022-03133-0"
+    supports: "CHARLS cognitive score applications and longitudinal cognitive decline modeling."
+  charls_multimorbidity:
+    citation: "Wu et al. 2020. Multimorbidity and its association with health-related quality of life among adults in China"
+    url: "https://www.aging-us.com/article/103070/text"
+    supports: "CHARLS multimorbidity analyses using two or more chronic diseases."
+  adl_iadl_clinical:
+    citation: "NCBI Bookshelf. Activities of Daily Living"
+    url: "https://www.ncbi.nlm.nih.gov/books/NBK470404/"
+    supports: "Clinical meaning of ADL/IADL functional status measures in older adults."
+
+domain_rules:
+  chronic_disease:
+    references: ["harmonized_charls_d", "charls_2018_user_guide", "charls_multimorbidity"]
+    literature_support_level: "moderate"
+    definition_reference: "Harmonized CHARLS chronic disease indicators; incident status derived from baseline-negative to follow-up-positive self-report."
+  multimorbidity:
+    references: ["harmonized_charls_d", "charls_multimorbidity"]
+    literature_support_level: "moderate"
+    definition_reference: "Two or more chronic disease indicators after baseline among respondents with baseline count below two."
+  function:
+    references: ["harmonized_charls_d", "adl_iadl_clinical"]
+    literature_support_level: "strong"
+    definition_reference: "ADL/IADL item difficulty indicators; incident difficulty derived from baseline no difficulty to follow-up any difficulty."
+  cognition:
+    references: ["harmonized_charls_d", "charls_cognition_decline"]
+    literature_support_level: "moderate"
+    definition_reference: "CHARLS cognition score and subdomain measures; continuous change is preferred until binary low-cognition threshold is finalized."
+  mental_health:
+    references: ["harmonized_charls_d", "cesd10_cutpoint_validation"]
+    literature_support_level: "strong"
+    definition_reference: "CESD-10 score; high depressive symptoms onset uses threshold >=10."
+  physical_measures:
+    references: ["harmonized_charls_d"]
+    literature_support_level: "moderate"
+    definition_reference: "CHARLS physical measurement fields; continuous change endpoints require clinical threshold review before binary conversion."
+  medical_utilization:
+    references: ["harmonized_charls_d", "charls_2018_user_guide"]
+    literature_support_level: "moderate"
+    definition_reference: "CHARLS past-year hospitalization and medical-use indicators."
+  mortality:
+    references: ["harmonized_charls_d", "charls_2018_user_guide"]
+    literature_support_level: "needs source-specific timing review"
+    definition_reference: "Mortality fields are present but iwstat and radyear/radmonth timing semantics require review before modeling."

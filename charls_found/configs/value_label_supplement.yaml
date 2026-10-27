@@ -1,0 +1,86 @@
+supplemental_labels:
+  hibpe_self:
+    "4":
+      value_label: "通过社区组织体检知道患有高血压"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 4 is the DA008_W2_1 response option for physical examination organized by community."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "5":
+      value_label: "通过 CHARLS 体检知道患有高血压"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 5 is the DA008_W2_1 response option for CHARLS physical examination."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "6":
+      value_label: "通过其他方式知道患有高血压"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 6 is the DA008_W2_1 response option for other ascertainment source."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+  lunge_self:
+    "4":
+      value_label: "通过社区组织体检知道患有慢性肺部疾病"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 4 is the DA008_W2_1 response option for physical examination organized by community."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "5":
+      value_label: "通过 CHARLS 体检知道患有慢性肺部疾病"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 5 is the DA008_W2_1 response option for CHARLS physical examination."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "6":
+      value_label: "通过其他方式知道患有慢性肺部疾病"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 6 is the DA008_W2_1 response option for other ascertainment source."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+  psyche_self:
+    "4":
+      value_label: "通过社区组织体检知道患有情感及精神问题"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 4 is the DA008_W2_1 response option for physical examination organized by community."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "5":
+      value_label: "通过 CHARLS 体检知道患有情感及精神问题"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 5 is the DA008_W2_1 response option for CHARLS physical examination."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+    "6":
+      value_label: "通过其他方式知道患有情感及精神问题"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2018 CHARLS Wave 4 household questionnaire DA008_W2_1"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2018-charls-wave4/application/CHARLS_2018_Household_Questionnaire.pdf"
+      source_lines: "L2308-L2316"
+      evidence_note: "Observed only in wave 4; code 6 is the DA008_W2_1 response option for other ascertainment source."
+      semantic_note: "This is an ascertainment-source code embedded in a self-knowledge variable, not a simple yes/no response."
+  satlife:
+    "6":
+      value_label: "现在没有子女（源自 wave 5 子女关系满意度题，不是生活满意度有效选项）"
+      label_source: "value_label_supplement_codebook"
+      source_question: "2020 CHARLS Wave 5 Chinese questionnaire DC026/DC027"
+      source_url: "https://charls.charlsdata.com/Public/ashelf/public/uploads/document/2020-charls-wave5/application/CHARLS_2020_Questionnaire_Chinese.pdf"
+      source_lines: "L1610-L1625"
+      evidence_note: "DC026 life satisfaction has values 1-5; DC027 child-relationship satisfaction has code 6 for no child. The 21 observed satlife=6 records occur only in wave 5 and have satlifez missing."
+      semantic_note: "Treat as a source-mapping/structural-not-applicable flag rather than an ordinary life-satisfaction level."
+      valid_for_variable_scale: false

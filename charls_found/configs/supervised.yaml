@@ -1,0 +1,50 @@
+inputs:
+  data_config: "charls_found/configs/data.yaml"
+  outcome_registry: "outputs/02_outcome_registry/outcome_registry_validated.csv"
+  time_alignment: "outputs/03_time_alignment/charls_time_alignment.parquet"
+  leakage_matrix: "outputs/04_leakage/per_outcome_predictor_leakage_matrix.csv"
+  variable_type_map: "outputs/05_tokenization/charls_variable_type_map.csv"
+
+outputs:
+  supervised_directory: "outputs/06_supervised"
+  supervised_outcome_matrix: "outputs/06_supervised/supervised_outcome_matrix.parquet"
+  supervised_time_to_event_matrix: "outputs/06_supervised/supervised_time_to_event_matrix.parquet"
+  person_period_transition_audit: "outputs/06_supervised/person_period_transition_audit.csv"
+  person_period_transition_audit_report: "outputs/06_supervised/person_period_transition_audit_report.md"
+  supervised_matrix_manifest: "outputs/06_supervised/supervised_matrix_manifest.json"
+  supervised_matrix_report: "outputs/06_supervised/supervised_matrix_report.md"
+  baseline_probe_metrics: "outputs/06_supervised/baseline_probe_metrics.csv"
+  baseline_probe_report: "outputs/06_supervised/baseline_probe_report.md"
+
+probe:
+  selected_outcomes:
+    - "adl_new_difficulty"
+    - "iadl_new_difficulty"
+    - "incident_diabetes"
+    - "incident_hypertension"
+    - "multimorbidity_onset"
+    - "high_depressive_symptoms_onset"
+    - "hospitalization_onset"
+    - "low_cognition_onset_data_driven"
+  baseline_wave: 1
+  origin_waves: [1, 2, 3, 4]
+  wave_years:
+    1: 2011
+    2: 2013
+    3: 2015
+    4: 2018
+    5: 2020
+  safe_predictor_reason: "safe_baseline_predictor"
+  row_limit: 100000
+
+split:
+  seed: 20260620
+  train: 0.8
+  validation: 0.1
+  test: 0.1
+
+models:
+  random_state: 20260620
+  n_jobs: 4
+  lightgbm_estimators: 250
+  xgboost_estimators: 250

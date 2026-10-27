@@ -1,0 +1,29 @@
+api:
+  base_url: "http://127.0.0.1:8765"
+  surface: "sidecar"
+
+source:
+  id: "charls"
+  main_file: "analysis_data/charls.parquet"
+  id_column: "ID"
+  wave_column: "wave"
+  expected_waves: [1, 2, 3, 4, 5]
+  full_row_limit: 100000
+
+outputs:
+  directory: "outputs"
+  data_audit_directory: "outputs/01_data_audit"
+  outcome_registry_directory: "outputs/02_outcome_registry"
+  time_alignment_directory: "outputs/03_time_alignment"
+  leakage_directory: "outputs/04_leakage"
+
+audit:
+  high_missing_threshold: 0.8
+  fetch_variable_index_metadata: true
+
+outcomes:
+  baseline_wave: 1
+  followup_waves: [2, 3, 4, 5]
+  minimum_event_count_for_usable: 100
+  cesd10_high_symptom_cutpoint: 10
+  low_cognition_quantile: 0.25

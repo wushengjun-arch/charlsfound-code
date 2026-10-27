@@ -1,0 +1,98 @@
+inputs:
+  tokenized_person_wave: "outputs/05_tokenization/charls_tokenized_person_wave.parquet"
+  tokenization_metadata: "outputs/05_tokenization/charls_tokenization_metadata.csv"
+  supervised_outcome_matrix: "outputs/06_supervised/supervised_outcome_matrix.parquet"
+  supervised_matrix_manifest: "outputs/06_supervised/supervised_matrix_manifest.json"
+  baseline_probe_metrics: "outputs/06_supervised/baseline_probe_metrics.csv"
+  leakage_matrix: "outputs/04_leakage/per_outcome_predictor_leakage_matrix.csv"
+
+outputs:
+  mlm_directory: "outputs/07_mlm"
+  mlm_person_wave_dataset: "outputs/07_mlm/charls_mlm_person_wave.parquet"
+  mlm_split_manifest: "outputs/07_mlm/mlm_split_manifest.json"
+  diagnostic_trait_masks: "outputs/07_mlm/outcome_trait_masks.json"
+  mlm_input_report: "outputs/07_mlm/mlm_input_report.md"
+  embedding_comparison_directory: "outputs/08_embedding_comparison"
+  embedding_comparison_metrics: "outputs/08_embedding_comparison/embedding_vs_tree_metrics.csv"
+  embedding_comparison_decision_table: "outputs/08_embedding_comparison/embedding_vs_tree_decision_table.csv"
+  embedding_comparison_report: "outputs/08_embedding_comparison/embedding_vs_tree_report.md"
+  multimorbidity_stability_bootstrap: "outputs/08_embedding_comparison/multimorbidity_stability_bootstrap.csv"
+  multimorbidity_stability_repeated_splits: "outputs/08_embedding_comparison/multimorbidity_stability_repeated_splits.csv"
+  multimorbidity_stability_report: "outputs/08_embedding_comparison/multimorbidity_stability_report.md"
+  late_fusion_metrics: "outputs/08_embedding_comparison/late_fusion_metrics.csv"
+  late_fusion_decision_table: "outputs/08_embedding_comparison/late_fusion_decision_table.csv"
+  late_fusion_report: "outputs/08_embedding_comparison/late_fusion_report.md"
+  late_fusion_stability_bootstrap: "outputs/08_embedding_comparison/late_fusion_stability_bootstrap.csv"
+  late_fusion_stability_repeated_splits: "outputs/08_embedding_comparison/late_fusion_stability_repeated_splits.csv"
+  late_fusion_stability_summary: "outputs/08_embedding_comparison/late_fusion_stability_summary.csv"
+  late_fusion_stability_report: "outputs/08_embedding_comparison/late_fusion_stability_report.md"
+
+model:
+  hidden_size: 128
+  num_layers: 4
+  num_heads: 4
+  dropout: 0.1
+
+training:
+  seed: 20260621
+  mask_probability: 0.15
+  batch_size: 64
+  max_epochs: 20
+  patience: 4
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  num_workers: 0
+  device: "auto"
+  run_name: "charls_found_lite_v1"
+
+comparison:
+  baseline_tree_models: ["lightgbm", "xgboost"]
+  embedding_run_name: "charls_found_lite_v1"
+  clean_mask_mode: "none"
+  disease_mask_mode: "diagnostic"
+  disease_domains: ["chronic_disease", "multimorbidity"]
+  embedding_models: ["logistic_regression", "mlp"]
+  embedding_poolings: ["cls_embedding", "mean_embedding"]
+  include_time_features: true
+  fm_delta_threshold: 0.01
+  mlp_hidden_layer_sizes: [64]
+  mlp_alpha: 0.0001
+  mlp_batch_size: 256
+  mlp_learning_rate_init: 0.001
+  mlp_max_iter: 120
+  mlp_n_iter_no_change: 12
+
+stability:
+  outcome_id: "multimorbidity_onset"
+  seed: 20260621
+  bootstrap_iterations: 1000
+  repeated_splits: 10
+  train_fraction: 0.8
+  validation_fraction: 0.1
+  test_fraction: 0.1
+
+late_fusion:
+  fusion_model: "stacked_logistic_regression"
+  fusion_fit_split: "validation"
+  fusion_features: ["tree_probability", "embedding_probability"]
+
+late_fusion_stability:
+  outcomes: ["incident_hypertension", "multimorbidity_onset"]
+  seed: 20260622
+  bootstrap_iterations: 1000
+  repeated_splits: 10
+  train_fraction: 0.8
+  validation_fraction: 0.1
+  test_fraction: 0.1
+
+masking:
+  mask_token: "value:<mask>"
+  pad_token: "value:<pad>"
+  missing_token: "value:<missing>"
+  diagnostic_exclusion_reasons:
+    - "target_source_variable"
+    - "direct_outcome_source_variable"
+    - "outcome_component_variable"
+    - "disease_diagnosis_year_construct"
+    - "disease_diagnostic_or_treatment_construct"
+    - "multimorbidity_diagnostic_or_count_construct"
